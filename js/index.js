@@ -64,3 +64,45 @@ switch (true){
   }
   
 }
+
+// Bonus 1
+
+// As word count below is constructed on space count
+// split() is used to cover some edge cases such as
+// "    ", "", "   Hello world  "
+// as split() didn't work well with recurring strings
+// which removed 1st of recurring spaces but keeps rest 
+// as empty string 
+// added an empty string check '' 
+
+const para = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mattis, odio in vehicula bibendum, ante ex venenatis tortor, congue vestibulum ex velit nec turpis. Curabitur vel pellentesque purus. Duis non ante euismod, varius lacus et, tristique ante. Praesent ac purus a dolor rutrum aliquet. Nam hendrerit rhoncus mi ac pretium. Vivamus iaculis sodales justo, sit amet porta ante. Praesent faucibus erat consectetur lobortis euismod. Cras aliquam nulla ac luctus volutpat. Curabitur eu leo vel purus finibus lacinia non sit amet tortor. Ut hendrerit justo ac libero gravida, in blandit leo consectetur. Aliquam imperdiet nibh quis massa eleifend, blandit lacinia massa pharetra. Curabitur id finibus sapien. Aliquam malesuada faucibus justo, nec vehicula dolor consequat ac. Proin in neque ex.
+
+In et posuere sapien. Phasellus rutrum, odio vel tempor sagittis, erat risus tempus dui, id consectetur magna tellus et ipsum. Suspendisse eget porttitor massa. Nulla facilisi. Sed nisl eros, vehicula eu molestie sed, tempor ac quam. Mauris magna magna, tincidunt sed faucibus ac, volutpat id magna. Praesent lobortis rhoncus justo, vel sagittis tellus luctus sollicitudin. In eget laoreet ante. Nam at laoreet enim, sollicitudin blandit mi. Suspendisse in libero leo. Integer pharetra, augue nec suscipit volutpat, tortor diam feugiat nulla, quis tempus felis massa sed enim. Suspendisse luctus posuere tortor non vulputate. Aenean vestibulum magna ultrices tortor placerat posuere.
+
+Aliquam scelerisque odio sapien, viverra congue ex condimentum a. Etiam tincidunt nisi et elit condimentum suscipit. Proin eget bibendum sem. Vestibulum non gravida erat, nec consequat ex. Nulla lobortis, augue sit amet mollis molestie, diam tortor consectetur ante, quis cursus sem massa quis risus. Proin luctus auctor elit. Nulla lobortis massa vitae finibus auctor. Aliquam accumsan malesuada sem sed euismod.
+`
+
+if (para.length !== 0){
+  paraArrayed = para.split(" ");
+  for (let j = 0; j < paraArrayed.length; j++){
+   //empty string check 
+    if (paraArrayed[j] !== ''){
+      paraArrayedNoSpace.push(paraArrayed[j]);
+    }
+    if (paraArrayed[j] === 'et' || paraArrayed[j] === 'et.' || paraArrayed[j] === 'et,'){
+      etArray.push(paraArrayed[j]);
+    }
+  }
+}
+// \n line breaks cause last word of the paragraph to merge with beginning of 
+// the next paragraph, which results as 1 word instead of 2
+// can count line breaks same as " " but results with too crowded code
+// as 3 paragraps cost 2 lost words, just added +2 below
+
+
+let countOfWords = paraArrayedNoSpace.length + 2; // adding lost words per paragraph
+let countOfEt = etArray.length;
+
+
+console.log(countOfWords);
+console.log(countOfEt);
