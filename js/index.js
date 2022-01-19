@@ -106,3 +106,44 @@ let countOfEt = etArray.length;
 
 console.log(countOfWords);
 console.log(countOfEt);
+
+// Bonus 2
+
+
+let phraseToCheck = "No 'x' in Nixon";
+let finalPhrase = [];
+let specialCharacters = ["'", '!', '.', ',', ' ', '?']
+
+phraseToCheck = phraseToCheck.toLowerCase();
+// console.log(phraseToCheck);
+function cleaningNonLetters(string){ 
+  for (let i=0; i < string.length; i++){ 
+    if (specialCharacters.includes(string[i])){
+      continue;
+    } else {
+      finalPhrase.push(string[i]);
+    }
+  }
+}
+
+cleaningNonLetters(phraseToCheck);
+// console.log(finalPhrase);
+
+function checkPalindrome(phrase) {
+  for (i=0; i < phrase.length; i++){
+    let iReverse = phrase.length - i - 1;;
+    console.log(i, phrase[i]);
+    if (phrase[i] !== phrase[iReverse]){
+      return false;
+    }
+  }
+  return true;
+}
+
+const isPalindrome = checkPalindrome(finalPhrase);
+
+if (isPalindrome === true) {
+  console.log("Yes")
+} else {
+  console.log("No")
+}
